@@ -15,7 +15,8 @@ public interface ProjectMapper {
     Project findById(Integer id);
 
     @Insert("INSERT INTO project(name, description, tech_stack, github_url, image_url) " +
-            "VALUES(#{name}, #{description}, #{techStack}, #{githubUrl}, #{imageUrl})")
+            "VALUES(#{name}, #{description}, #{techStack}, #{githubUrl}, #{imageUrl}) " +
+            "RETURNING id")  // PostgreSQL 用 RETURNING 返回自增主键
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insert(Project project);
 
