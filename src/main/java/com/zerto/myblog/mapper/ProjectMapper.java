@@ -20,9 +20,9 @@ public interface ProjectMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insert(Project project);
 
-    @Update("UPDATE project SET name=#{name}, description=#{description}, tech_stack=#{techStack}, " +
-            "github_url=#{githubUrl}, image_url=#{imageUrl} WHERE id=#{id}")
-    int update(Project project);
+    @Update("UPDATE project SET name=#{project.name}, description=#{project.description}, tech_stack=#{project.techStack}, " +
+            "github_url=#{project.githubUrl}, image_url=#{project.imageUrl} WHERE id=#{project.id}")
+    int update(@Param("project") Project project);
 
     @Delete("DELETE FROM project WHERE id = #{id}")
     int deleteById(Integer id);
